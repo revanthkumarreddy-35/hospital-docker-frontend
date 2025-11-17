@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .                 # root folder (correct!)
+      dockerfile: Dockerfile.frontend
+    container_name: hospital-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
