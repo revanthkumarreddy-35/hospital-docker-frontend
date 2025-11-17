@@ -3,8 +3,10 @@ version: '3.8'
 services:
   frontend:
     build:
-      context: .                 # root folder (correct!)
+      context: .                 # repo root (where Dockerfile.frontend lives)
       dockerfile: Dockerfile.frontend
+      args:
+        - REACT_APP_API_URL=http://backend:8080   # optional build-time API url (change or remove)
     container_name: hospital-frontend
     restart: unless-stopped
     ports:
